@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-950">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Congratulations JASVIR - BTC Reward Claim</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Orbitron & Inter for crypto digital aesthetics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      background-color: #030712;
+      color: #f8fafc;
+      user-select: none;
+    }
+
+    .font-digital {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    /* Continuous Spinning Light Rays Burst */
+    .spinning-rays {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 200vw;
+      height: 200vw;
+      max-width: 2200px;
+      max-height: 2200px;
+      background: conic-gradient(
+        from 0deg at 50% 50%,
+        rgba(245, 158, 11, 0.28) 0deg,
+        transparent 15deg,
+        rgba(236, 72, 153, 0.22) 30deg,
+        transparent 45deg,
+        rgba(59, 130, 246, 0.28) 60deg,
+        transparent 75deg,
+        rgba(16, 185, 129, 0.22) 90deg,
+        transparent 105deg,
+        rgba(245, 158, 11, 0.28) 120deg,
+        transparent 135deg,
+        rgba(236, 72, 153, 0.22) 150deg,
+        transparent 165deg,
+        rgba(59, 130, 246, 0.28) 180deg,
+        transparent 195deg,
+        rgba(16, 185, 129, 0.22) 210deg,
+        transparent 225deg,
+        rgba(245, 158, 11, 0.28) 240deg,
+        transparent 255deg,
+        rgba(236, 72, 153, 0.22) 270deg,
+        transparent 285deg,
+        rgba(59, 130, 246, 0.28) 300deg,
+        transparent 315deg,
+        rgba(16, 185, 129, 0.22) 330deg,
+        transparent 345deg,
+        rgba(245, 158, 11, 0.28) 360deg
+      );
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: spinRays 28s linear infinite;
+      border-radius: 50%;
+      filter: blur(28px);
+      pointer-events: none;
+    }
+
+    @keyframes spinRays {
+      0% { transform: translate(-50%, -50%) rotate(0deg); }
+      100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    /* Gleaming Central Glow Pulse */
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.75; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.18); }
+    }
+
+    .gleam-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.5) 0%, rgba(245, 158, 11, 0.25) 45%, transparent 70%);
+      transform: translate(-50%, -50%);
+      animation: pulseGlow 3.5s ease-in-out infinite;
+      pointer-events: none;
+      filter: blur(35px);
+    }
+
+    /* Neon Glitch / Glow Text Shadows */
+    .neon-gold-text {
+      color: #fbbf24;
+      text-shadow: 
+        0 0 8px rgba(251, 191, 36, 0.7),
+        0 0 22px rgba(245, 158, 11, 0.6),
+        0 0 45px rgba(217, 119, 6, 0.5);
+    }
+
+    .neon-cyan-text {
+      color: #38bdf8;
+      text-shadow: 
+        0 0 8px rgba(56, 189, 248, 0.7),
+        0 0 22px rgba(14, 165, 233, 0.6),
+        0 0 45px rgba(2, 132, 199, 0.5);
+    }
+
+    /* Shimmer Gold Button */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    .btn-shimmer {
+      background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 25%, #fef08a 50%, #fbbf24 75%, #f59e0b 100%);
+      background-size: 200% 100%;
+      animation: shimmer 3s infinite linear;
+    }
+
+    /* Card Entry Animation */
+    .reveal-card {
+      opacity: 0;
+      transform: scale(0.75) translateY(35px);
+      transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .reveal-card.active {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Glassmorphism panel styling */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      box-shadow: 
+        0 0 40px rgba(245, 158, 11, 0.2),
+        inset 0 0 20px rgba(251, 191, 36, 0.08);
+    }
+
+    .glass-panel-emerald {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 
+        0 0 40px rgba(16, 185, 129, 0.2),
+        inset 0 0 20px rgba(16, 185, 129, 0.08);
+    }
+  </style>
+</head>
+
+<body class="h-full w-full overflow-hidden flex items-center justify-center relative min-h-screen">
+
+  <!-- Canvas for Explosive Fireworks & Party Poppers -->
+  <canvas id="fireworksCanvas" class="fixed inset-0 w-full h-full z-0 pointer-events-auto cursor-pointer"></canvas>
+
+  <!-- Continuous Spinning Light Rays Burst (Behind Main Card) -->
+  <div id="lightRaysContainer" class="absolute inset-0 pointer-events-none z-10 flex items-center justify-center opacity-0 transition-opacity duration-1000">
+    <div class="spinning-rays"></div>
+    <div class="gleam-center"></div>
+  </div>
+
+  <!-- Header Controls (Sound Toggle Only) -->
+  <div class="fixed top-4 right-4 z-40">
+    <button id="soundToggleBtn" class="bg-slate-900/80 hover:bg-slate-800 text-amber-400 border border-amber-500/30 px-3.5 py-2 rounded-xl text-xs font-semibold backdrop-blur-md flex items-center gap-2 transition-all shadow-lg active:scale-95">
+      <i class="fa-solid fa-volume-high text-sm"></i>
+      <span id="soundStatusText">Sound ON</span>
+    </button>
+  </div>
+
+  <!-- Main Celebration Card -->
+  <main class="relative z-20 px-4 w-full max-w-xl mx-auto text-center pointer-events-none my-auto">
+    
+    <!-- Celebration View Card -->
+    <div id="celebrationCard" class="reveal-card glass-panel rounded-3xl p-6 sm:p-10 pointer-events-auto relative overflow-hidden group">
+      
+      <!-- Top Decorative Crypto Icon -->
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 p-0.5 mb-5 shadow-xl shadow-amber-500/25 group-hover:scale-110 transition-transform duration-500">
+        <div class="w-full h-full bg-slate-950 rounded-full flex items-center justify-center">
+          <i class="fa-brands fa-bitcoin text-4xl text-amber-400 animate-pulse"></i>
+        </div>
+      </div>
+
+      <!-- Badge Header -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold tracking-widest uppercase mb-4">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+        Reward Confirmed
+      </div>
+
+      <!-- Requested Exact Congratulations Text -->
+      <h1 class="font-digital text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-wider mb-2 neon-gold-text">
+        Congratulations JASVIR
+      </h1>
+
+      <!-- Reward Allocation Banner -->
+      <div class="my-5 py-4 px-3 rounded-2xl bg-slate-900/80 border border-slate-800 shadow-inner">
+        <p class="text-xs text-slate-400 uppercase tracking-widest font-semibold mb-1">You Have Received</p>
+        <p class="font-digital text-xl sm:text-2xl md:text-3xl font-extrabold neon-cyan-text flex items-center justify-center gap-2 flex-wrap">
+          <span>0.000012 BTC</span>
+          <span class="text-amber-400 text-lg sm:text-xl font-normal">{£8,945.32}</span>
+        </p>
+      </div>
+
+      <!-- Call To Action Text -->
+      <p class="text-slate-300 font-medium text-base sm:text-lg mb-7 tracking-wide">
+        Click now to claim it
+      </p>
+
+      <!-- Claim Button -->
+      <button id="claimBtn" class="btn-shimmer w-full py-4 px-8 rounded-2xl text-slate-950 font-extrabold text-lg sm:text-xl uppercase tracking-wider shadow-2xl hover:shadow-amber-500/50 hover:scale-[1.02] active:scale-95 transition-all duration-200 flex items-center justify-center gap-3">
+        <i class="fa-solid fa-bolt text-slate-950 text-xl animate-bounce"></i>
+        <span>Claim Now</span>
+      </button>
+
+      <!-- Security / Blockchain Subtext -->
+      <p class="mt-4 text-xs text-slate-500 font-mono flex items-center justify-center gap-1.5">
+        <i class="fa-solid fa-shield-halved text-amber-500"></i>
+        <span>Instant Blockchain Verification • Automated Payout</span>
+      </p>
+
+      <!-- Interactive Tap Banner -->
+      <div class="mt-6 pt-4 border-t border-slate-800/80 text-slate-400 text-xs flex items-center justify-center gap-2">
+        <i class="fa-solid fa-hand-pointer text-amber-400 animate-pulse"></i>
+        <span>Tap anywhere on screen for fireworks!</span>
+      </div>
+
+    </div>
+
+    <!-- Claim Processing View / Modal Screen -->
+    <div id="claimProcessingCard" class="hidden glass-panel-emerald rounded-3xl p-6 sm:p-8 pointer-events-auto relative text-left transition-all duration-500">
+      
+      <!-- Top Processing Bar Header -->
+      <div class="flex items-center justify-between pb-4 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center justify-center text-lg">
+            <i class="fa-solid fa-gears animate-spin"></i>
+          </div>
+          <div>
+            <h2 class="font-digital text-lg font-bold text-slate-100">Claim Processing</h2>
+            <p class="text-xs text-slate-400 font-mono">Ref: <span class="text-amber-400">#BTC-8945-JASVIR</span></p>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold font-mono animate-pulse">
+          Action Required
+        </span>
+      </div>
+
+      <!-- Transaction Summary Components Table -->
+      <div class="my-5 bg-slate-900/90 rounded-2xl p-4 border border-slate-800 space-y-3 font-mono text-sm">
+        
+        <!-- Recipient -->
+        <div class="flex justify-between items-center text-xs sm:text-sm">
+          <span class="text-slate-400 flex items-center gap-2">
+            <i class="fa-solid fa-user text-amber-400 w-4"></i> Recipient:
+          </span>
+          <span class="text-slate-100 font-bold">JASVIR</span>
+        </div>
+
+        <!-- Gross Amount -->
+        <div class="flex justify-between items-center text-xs sm:text-sm">
+          <span class="text-slate-400 flex items-center gap-2">
+            <i class="fa-brands fa-bitcoin text-cyan-400 w-4"></i> Reward Value:
+          </span>
+          <span class="text-cyan-300 font-bold">0.000012 BTC (£8,945.32)</span>
+        </div>
+
+        <!-- Processing Fee Component -->
+        <div class="flex justify-between items-center text-xs sm:text-sm pt-2 border-t border-slate-800/80">
+          <span class="text-amber-300 font-semibold flex items-center gap-2">
+            <i class="fa-solid fa-receipt text-amber-400 w-4"></i> Processing / Network Fee:
+          </span>
+          <span class="text-amber-400 font-extrabold text-base px-2 py-0.5 rounded bg-amber-500/10 border border-amber-500/30">
+            £80.00
+          </span>
+        </div>
+
+        <!-- Net Disbursed Payout -->
+        <div class="flex justify-between items-center text-xs sm:text-sm pt-2 border-t border-slate-800/80">
+          <span class="text-slate-400 flex items-center gap-2">
+            <i class="fa-solid fa-wallet text-emerald-400 w-4"></i> Net Disbursement:
+          </span>
+          <span class="text-emerald-400 font-bold">£8,865.32 + 0.000012 BTC</span>
+        </div>
+
+      </div>
+
+      <!-- Progress Verification Steps Component -->
+      <div class="mb-6 space-y-3 text-xs sm:text-sm">
+        <p class="text-xs uppercase tracking-widest text-slate-400 font-bold font-mono">Verification Checklist:</p>
+        
+        <!-- Step 1: Completed -->
+        <div class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-emerald-500/30">
+          <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs flex-shrink-0">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-semibold">1. Account Verification</p>
+            <p class="text-slate-400 text-[11px]">Identity verified for JASVIR</p>
+          </div>
+          <span class="text-emerald-400 text-xs font-mono font-bold">PASS</span>
+        </div>
+
+        <!-- Step 2: Pending Fee Clearance -->
+        <div id="feeStepBox" class="flex items-center gap-3 p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/40">
+          <div id="feeStepIcon" class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs flex-shrink-0">
+            <i class="fa-solid fa-spinner animate-spin"></i>
+          </div>
+          <div class="flex-1">
+            <p id="feeStepTitle" class="text-amber-300 font-semibold">2. Processing Fee Clearance</p>
+            <p id="feeStepSub" class="text-slate-300 text-[11px]">Clear £80 network fee to unlock transfer</p>
+          </div>
+          <span id="feeStepBadge" class="text-amber-400 text-xs font-mono font-bold">REQUIRED (£80)</span>
+        </div>
+
+        <!-- Step 3: Blockchain Release -->
+        <div id="releaseStepBox" class="flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-slate-800 opacity-60">
+          <div id="releaseStepIcon" class="w-6 h-6 rounded-full bg-slate-800 text-slate-500 flex items-center justify-center text-xs flex-shrink-0">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div class="flex-1">
+            <p class="text-slate-400 font-semibold">3. Blockchain Release</p>
+            <p class="text-slate-500 text-[11px]">Automatic payout to designated wallet</p>
+          </div>
+          <span id="releaseStepBadge" class="text-slate-500 text-xs font-mono">QUEUED</span>
+        </div>
+      </div>
+
+      <!-- Action Button for Paying £80 Fee -->
+      <div class="space-y-3">
+        <button id="payFeeBtn" class="btn-shimmer w-full py-3.5 px-6 rounded-xl text-slate-950 font-extrabold text-base sm:text-lg uppercase tracking-wider shadow-xl hover:shadow-amber-500/40 hover:scale-[1.01] active:scale-95 transition-all flex items-center justify-center gap-2">
+          <i class="fa-solid fa-credit-card"></i>
+          <span id="payFeeBtnText">Pay £80 Fee & Claim BTC</span>
+        </button>
+
+        <button id="backToCardBtn" class="w-full py-2 text-xs font-mono text-slate-400 hover:text-slate-200 transition-colors text-center block">
+          <i class="fa-solid fa-arrow-left mr-1"></i> Return to Main Celebration
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    // Web Audio API Sound Generator (No external MP3 dependencies)
+    class SoundEngine {
+      constructor() {
+        this.ctx = null;
+        this.enabled = true;
+      }
+
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) {
+            this.ctx = new AudioContext();
+          }
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
+        }
+      }
+
+      // Firework whistle sound
+      playWhistle() {
+        if (!this.enabled || !this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(320, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(1250, this.ctx.currentTime + 0.3);
+          
+          gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.3);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.3);
+        } catch(e){}
+      }
+
+      // Explosion boom sound
+      playExplosion(pitch = 1) {
+        if (!this.enabled || !this.ctx) return;
+        try {
+          const bufferSize = this.ctx.sampleRate * 0.35;
+          const buffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+          }
+
+          const noise = this.ctx.createBufferSource();
+          noise.buffer = buffer;
+
+          const filter = this.ctx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(800 * pitch, this.ctx.currentTime);
+          filter.frequency.exponentialRampToValueAtTime(30 * pitch, this.ctx.currentTime + 0.35);
+
+          const gain = this.ctx.createGain();
+          gain.gain.setValueAtTime(0.25, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.35);
+
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(this.ctx.destination);
+          noise.start();
+        } catch(e){}
+      }
+
+      // Party popper pop sound
+      playPop() {
+        if (!this.enabled || !this.ctx) return;
+        try {
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(160, this.ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(50, this.ctx.currentTime + 0.15);
+
+          gain.gain.setValueAtTime(0.35, this.ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.15);
+
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 0.15);
+        } catch(e){}
+      }
+
+      // Fanfare Chime sound
+      playFanfare() {
+        if (!this.enabled || !this.ctx) return;
+        try {
+          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          notes.forEach((freq, idx) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.09);
+            
+            gain.gain.setValueAtTime(0, this.ctx.currentTime + idx * 0.09);
+            gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + idx * 0.09 + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + idx * 0.09 + 0.7);
+
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(this.ctx.currentTime + idx * 0.09);
+            osc.stop(this.ctx.currentTime + idx * 0.09 + 0.7);
+          });
+        } catch(e){}
+      }
+    }
+
+    const sound = new SoundEngine();
+
+    // Canvas Setup
+    const canvas = document.getElementById('fireworksCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const COLORS = [
+      '#fbbf24', '#f59e0b', '#ec4899', '#38bdf8', '#10b981', 
+      '#a855f7', '#ef4444', '#f43f5e', '#6366f1', '#facc15'
+    ];
+
+    // Firework Rocket Class
+    class Rocket {
+      constructor(startX, startY, targetX, targetY) {
+        this.x = startX;
+        this.y = startY;
+        this.startX = startX;
+        this.startY = startY;
+        this.targetX = targetX;
+        this.targetY = targetY;
+        this.distanceToTarget = Math.hypot(targetX - startX, targetY - startY);
+        this.distanceTraveled = 0;
+        this.coordinates = [];
+        this.coordinateCount = 3;
+        while (this.coordinateCount--) {
+          this.coordinates.push([this.x, this.y]);
+        }
+        this.angle = Math.atan2(targetY - startY, targetX - startX);
+        this.speed = 3;
+        this.acceleration = 1.05;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      }
+
+      update(index) {
+        this.coordinates.pop();
+        this.coordinates.unshift([this.x, this.y]);
+        this.speed *= this.acceleration;
+
+        const vx = Math.cos(this.angle) * this.speed;
+        const vy = Math.sin(this.angle) * this.speed;
+        this.distanceTraveled = Math.hypot(this.x - this.startX, this.y - this.startY);
+
+        if (this.distanceTraveled >= this.distanceToTarget) {
+          createExplosion(this.targetX, this.targetY, this.color);
+          sound.playExplosion(Math.random() * 0.5 + 0.8);
+          rockets.splice(index, 1);
+        } else {
+          this.x += vx;
+          this.y += vy;
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+        ctx.lineTo(this.x, this.y);
+        ctx.strokeStyle = this.color;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+      }
+    }
+
+    // Spark Particle Class
+    class Spark {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.angle = Math.random() * Math.PI * 2;
+        this.speed = Math.random() * 10 + 1;
+        this.friction = 0.95;
+        this.gravity = 0.8;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.02 + 0.015;
+        this.coordinates = [];
+        this.coordinateCount = 5;
+        while (this.coordinateCount--) {
+          this.coordinates.push([this.x, this.y]);
+        }
+      }
+
+      update(index) {
+        this.coordinates.pop();
+        this.coordinates.unshift([this.x, this.y]);
+        this.speed *= this.friction;
+        this.x += Math.cos(this.angle) * this.speed;
+        this.y += Math.sin(this.angle) * this.speed + this.gravity;
+        this.alpha -= this.decay;
+
+        if (this.alpha <= this.decay) {
+          sparks.splice(index, 1);
+        }
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.coordinates[this.coordinates.length - 1][0], this.coordinates[this.coordinates.length - 1][1]);
+        ctx.lineTo(this.x, this.y);
+        ctx.strokeStyle = `rgba(${hexToRgb(this.color)}, ${this.alpha})`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      }
+    }
+
+    // Confetti Streamer Class
+    class Confetti {
+      constructor(x, y, vx, vy) {
+        this.x = x;
+        this.y = y;
+        this.vx = vx;
+        this.vy = vy;
+        this.size = Math.random() * 8 + 6;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 10;
+        this.gravity = 0.15;
+        this.drag = 0.98;
+        this.alpha = 1;
+        this.decay = Math.random() * 0.008 + 0.004;
+      }
+
+      update(index) {
+        this.vx *= this.drag;
+        this.vy *= this.drag;
+        this.vy += this.gravity;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.alpha -= this.decay;
+
+        if (this.alpha <= 0 || this.y > height + 20) {
+          confettis.splice(index, 1);
+        }
+      }
+
+      draw() {
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate((this.rotation * Math.PI) / 180);
+        ctx.fillStyle = `rgba(${hexToRgb(this.color)}, ${this.alpha})`;
+        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size * 1.5);
+        ctx.restore();
+      }
+    }
+
+    let rockets = [];
+    let sparks = [];
+    let confettis = [];
+
+    function hexToRgb(hex) {
+      let c = hex.replace('#', '');
+      if (c.length === 3) c = c.split('').map(x => x + x).join('');
+      const num = parseInt(c, 16);
+      return `${(num >> 16) & 255}, ${(num >> 8) & 255}, ${num & 255}`;
+    }
+
+    function createExplosion(x, y, color) {
+      const sparkCount = 70;
+      for (let i = 0; i < sparkCount; i++) {
+        sparks.push(new Spark(x, y, color));
+      }
+    }
+
+    function launchPopper(originX, originY, angleDeg) {
+      sound.playPop();
+      const count = 35;
+      const angleRad = (angleDeg * Math.PI) / 180;
+      for (let i = 0; i < count; i++) {
+        const spread = (Math.random() - 0.5) * 0.85;
+        const speed = Math.random() * 20 + 8;
+        const vx = Math.cos(angleRad + spread) * speed;
+        const vy = Math.sin(angleRad + spread) * speed;
+        confettis.push(new Confetti(originX, originY, vx, vy));
+      }
+    }
+
+    function launchRocket(targetX, targetY) {
+      sound.playWhistle();
+      const startX = targetX + (Math.random() - 0.5) * 120;
+      rockets.push(new Rocket(startX, height, targetX, targetY));
+    }
+
+    // Animation Loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.fillStyle = 'rgba(3, 7, 18, 0.2)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.globalCompositeOperation = 'lighter';
+
+      let r = rockets.length;
+      while (r--) {
+        rockets[r].draw();
+        rockets[r].update(r);
+      }
+
+      let s = sparks.length;
+      while (s--) {
+        sparks[s].draw();
+        sparks[s].update(s);
+      }
+
+      let c = confettis.length;
+      while (c--) {
+        confettis[c].draw();
+        confettis[c].update(c);
+      }
+    }
+
+    // Interactive Touch/Click Fireworks Spawn
+    canvas.addEventListener('click', (e) => {
+      sound.init();
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      launchRocket(x, y);
+      if (Math.random() > 0.4) {
+        launchPopper(x, y, Math.random() * 360);
+      }
+    });
+
+    // Burst celebration launcher
+    function runExplosiveCelebration(durationMs = 3500) {
+      sound.init();
+      const interval = setInterval(() => {
+        const x = Math.random() * (width * 0.8) + width * 0.1;
+        const y = Math.random() * (height * 0.5) + height * 0.1;
+        launchRocket(x, y);
+
+        if (Math.random() > 0.4) {
+          launchPopper(0, height, -45);
+          launchPopper(width, height, -135);
+        }
+      }, 240);
+
+      setTimeout(() => {
+        clearInterval(interval);
+      }, durationMs);
+    }
+
+    // Sound toggle UI handling
+    const soundToggleBtn = document.getElementById('soundToggleBtn');
+    const soundStatusText = document.getElementById('soundStatusText');
+    soundToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sound.init();
+      sound.enabled = !sound.enabled;
+      if (sound.enabled) {
+        soundStatusText.textContent = "Sound ON";
+        soundToggleBtn.classList.replace('text-slate-400', 'text-amber-400');
+        sound.playPop();
+      } else {
+        soundStatusText.textContent = "Sound OFF";
+        soundToggleBtn.classList.replace('text-amber-400', 'text-slate-400');
+      }
+    });
+
+    const celebrationCard = document.getElementById('celebrationCard');
+    const claimProcessingCard = document.getElementById('claimProcessingCard');
+    const claimBtn = document.getElementById('claimBtn');
+    const backToCardBtn = document.getElementById('backToCardBtn');
+    const payFeeBtn = document.getElementById('payFeeBtn');
+    const payFeeBtnText = document.getElementById('payFeeBtnText');
+
+    // Claim Now Button -> Opens Processing View
+    claimBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sound.init();
+      sound.playFanfare();
+      runExplosiveCelebration(2500);
+
+      celebrationCard.classList.add('hidden');
+      claimProcessingCard.classList.remove('hidden');
+    });
+
+    // Back button -> Returns to Main Celebration
+    backToCardBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      claimProcessingCard.classList.add('hidden');
+      celebrationCard.classList.remove('hidden');
+    });
+
+    // Pay Fee Action Simulating Fee clearance & final release
+    payFeeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      sound.init();
+      
+      payFeeBtn.disabled = true;
+      payFeeBtnText.textContent = "Clearing £80.00 Fee...";
+      
+      // Update Step 2 UI to Processing state
+      document.getElementById('feeStepBadge').textContent = "PROCESSING...";
+      document.getElementById('feeStepBadge').className = "text-amber-400 text-xs font-mono font-bold animate-pulse";
+
+      setTimeout(() => {
+        // Step 2 Completed
+        document.getElementById('feeStepBox').className = "flex items-center gap-3 p-2.5 rounded-xl bg-slate-900/50 border border-emerald-500/30";
+        document.getElementById('feeStepIcon').className = "w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs flex-shrink-0";
+        document.getElementById('feeStepIcon').innerHTML = '<i class="fa-solid fa-check"></i>';
+        document.getElementById('feeStepTitle').textContent = "2. Processing Fee Clearance";
+        document.getElementById('feeStepTitle').className = "text-slate-200 font-semibold";
+        document.getElementById('feeStepSub').textContent = "£80.00 Fee Paid & Verified";
+        document.getElementById('feeStepBadge').textContent = "CLEARED";
+        document.getElementById('feeStepBadge').className = "text-emerald-400 text-xs font-mono font-bold";
+
+        // Step 3 Blockchain Release Activated
+        document.getElementById('releaseStepBox').className = "flex items-center gap-3 p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/50";
+        document.getElementById('releaseStepIcon').className = "w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs flex-shrink-0";
+        document.getElementById('releaseStepIcon').innerHTML = '<i class="fa-solid fa-paper-plane animate-bounce"></i>';
+        document.getElementById('releaseStepBadge').textContent = "DISPATCHING";
+        document.getElementById('releaseStepBadge').className = "text-emerald-400 text-xs font-mono font-bold animate-pulse";
+
+        sound.playFanfare();
+        runExplosiveCelebration(4000);
+
+        payFeeBtnText.textContent = "0.000012 BTC Dispatched to JASVIR!";
+        payFeeBtn.className = "w-full py-3.5 px-6 rounded-xl bg-emerald-500 text-slate-950 font-extrabold text-base sm:text-lg uppercase tracking-wider shadow-xl flex items-center justify-center gap-2";
+      }, 1800);
+    });
+
+    // Page Load Timeline Sequence
+    window.onload = function () {
+      // Start loop
+      animate();
+
+      // Launch intense fireworks automatically upon opening the site
+      runExplosiveCelebration(3500);
+
+      // Smoothly reveal digital congratulations card & spinning rays background
+      setTimeout(() => {
+        const raysContainer = document.getElementById('lightRaysContainer');
+
+        // Fade in spinning rays background
+        raysContainer.classList.remove('opacity-0');
+        raysContainer.classList.add('opacity-100');
+
+        // Reveal card
+        celebrationCard.classList.add('active');
+
+        // Fanfare chime
+        sound.playFanfare();
+      }, 3000);
+    };
+  </script>
+</body>
+</html>
